@@ -1,0 +1,14 @@
+<h3>category</h3>
+<select [(ngModel)]="category" (change)="change()">
+	<option *ngFor="let c of categories">{{ c }}</option>
+</select>
+
+<h3>search string: {{ searchString }}</h3>
+<input (keyup)="change()" [(ngModel)]="searchString" />
+
+<h1>results:</h1>
+<h2>Current Count: {{currentResultsCount}}, Previous Count: {{previousResultsCount}}</h2>
+<div *ngFor="let result of results"> <!-- Przez badrdzo długi czas myślałem jak można realizować-->
+	{{ result | json }}                <!-- ten fragment z wykorzystaniem async pipe'u, ale nie wiem jak -->
+	<button *ngIf="toLoad$ | async" (click)="loadMore()">load more</button>
+</div>
